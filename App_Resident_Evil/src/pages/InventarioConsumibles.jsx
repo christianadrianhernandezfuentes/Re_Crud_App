@@ -18,16 +18,16 @@ const InventarioConsumibles = () => {
 
   const cerrarSesion = () => navigate('/');
 
-  // ==========================================
-  // CONEXIÓN AL BACKEND (BASE DE DATOS REAL)
-  // ==========================================
+  // =============
+  // Base de datos
+  // =============
 
   // Obtener consumibles (GET)
   const obtenerConsumibles = async () => {
     try {
       const respuesta = await fetch('http://localhost:5000/api/consumibles');
       const datos = await respuesta.json();
-      setInventario(datos); // Llenamos la tabla con los datos reales
+      setInventario(datos); 
     } catch (error) {
       console.error("Error al conectar con el servidor:", error);
     }
@@ -38,7 +38,7 @@ const InventarioConsumibles = () => {
     obtenerConsumibles();
   }, []);
 
-  // Botones para abrir el Modal
+
   const abrirModalCrear = () => {
     setItemEditando(null);
     setFormNombre('');
@@ -74,7 +74,7 @@ const InventarioConsumibles = () => {
         });
       }
       
-      setModalAbierto(false); // Cerramos la ventana
+      setModalAbierto(false);
       obtenerConsumibles(); // Recargamos la tabla pidiéndole los datos frescos a la BD
 
     } catch (error) {
@@ -89,16 +89,16 @@ const InventarioConsumibles = () => {
         await fetch(`http://localhost:5000/api/consumibles/${id}`, {
           method: 'DELETE'
         });
-        obtenerConsumibles(); // Recargamos la tabla
+        obtenerConsumibles(); 
       } catch (error) {
         console.error("Error al eliminar:", error);
       }
     }
   };
 
-  // ==========================================
-  // INTERFAZ VISUAL (UI)
-  // ==========================================
+  // ============
+  // Interfaz visual (UI)
+  // ============
   return (
   
      <div 
@@ -162,7 +162,7 @@ const InventarioConsumibles = () => {
           />
           <input 
             type="text" 
-            placeholder="Detalle (Ej. Cura veneno)" 
+            placeholder="Detalle (Ejemplo. Cura veneno)" 
             value={formDetalle}
             onChange={(e) => setFormDetalle(e.target.value)}
             className="bg-gray-800 border border-gray-600 p-2 rounded text-white focus:outline-none focus:border-green-500"
