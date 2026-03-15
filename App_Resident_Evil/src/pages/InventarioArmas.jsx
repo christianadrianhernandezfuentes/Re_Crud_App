@@ -10,7 +10,6 @@ const InventarioArmas = () => {
   const navigate = useNavigate();
   const [inventario, setInventario] = useState([]);
 
-  // 2. Estados para el formulario y modal
   const [modalAbierto, setModalAbierto] = useState(false);
   const [armaEditando, setArmaEditando] = useState(null); 
   const [formNombre, setFormNombre] = useState('');
@@ -18,10 +17,7 @@ const InventarioArmas = () => {
 
   const cerrarSesion = () => navigate('/');
 
-  // $!"#&$(&"
-  // Conexion para backend para la base de datos
-  // !"#$)/)$"
-
+  // base de datos
   // Obtener armas get
   const obtenerArmas = async () => {
     try {
@@ -53,7 +49,6 @@ const InventarioArmas = () => {
     setModalAbierto(true);
   };
 
-  // Guardar Arma (post / put)
   const guardarArma = async () => {
     if (!formNombre || !formDetalle) return alert("Llena todos los campos");
 
@@ -74,8 +69,8 @@ const InventarioArmas = () => {
         });
       }
       
-      setModalAbierto(false); // Cerramos la ventana
-      obtenerArmas(); // Recargamos la tabla pidiéndole los datos frescos a la BD
+      setModalAbierto(false);
+      obtenerArmas(); 
 
     } catch (error) {
       console.error("Error al guardar:", error);
@@ -96,9 +91,9 @@ const InventarioArmas = () => {
     }
   };
 
-  // $$$$$$$
-  // Interfaz visual abajo
-  // $$$$$$$
+  // 
+  // ul visual bonito 
+  // 
   return (
    <div 
       className="min-h-screen p-10 flex flex-col items-center bg-cover bg-center bg-fixed"

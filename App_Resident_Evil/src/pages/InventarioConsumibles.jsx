@@ -7,10 +7,8 @@ import Modal from '../components/Modal';
 const InventarioConsumibles = () => {
   const navigate = useNavigate();
   
-  // 1. El estado empieza VACÍO, esperando los datos del servidor
   const [inventario, setInventario] = useState([]);
 
-  // 2. Estados para el formulario y modal
   const [modalAbierto, setModalAbierto] = useState(false);
   const [itemEditando, setItemEditando] = useState(null); 
   const [formNombre, setFormNombre] = useState('');
@@ -18,11 +16,10 @@ const InventarioConsumibles = () => {
 
   const cerrarSesion = () => navigate('/');
 
-  // =============
   // Base de datos
-  // =============
+  // <<<<>>>>
 
-  // Obtener consumibles (GET)
+  // Obtener consumibles get
   const obtenerConsumibles = async () => {
     try {
       const respuesta = await fetch('http://localhost:5000/api/consumibles');
@@ -33,11 +30,9 @@ const InventarioConsumibles = () => {
     }
   };
 
-  // Se ejecuta automáticamente al entrar a la página
   useEffect(() => {
     obtenerConsumibles();
   }, []);
-
 
   const abrirModalCrear = () => {
     setItemEditando(null);
@@ -53,20 +48,20 @@ const InventarioConsumibles = () => {
     setModalAbierto(true);
   };
 
-  // Guardar Consumible (POST / PUT)
+  // Guardar Consumible post
   const guardarItem = async () => {
     if (!formNombre || !formDetalle) return alert("Llena todos los campos");
 
     try {
       if (itemEditando) {
-        // ACTUALIZAR (PUT)
+        // Actualizar put
         await fetch(`http://localhost:5000/api/consumibles/${itemEditando}`, {
           method: 'PUT',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ nombre: formNombre, detalle: formDetalle })
         });
       } else {
-        // CREAR (POST)
+        // Crear post
         await fetch('http://localhost:5000/api/consumibles', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
@@ -75,14 +70,14 @@ const InventarioConsumibles = () => {
       }
       
       setModalAbierto(false);
-      obtenerConsumibles(); // Recargamos la tabla pidiéndole los datos frescos a la BD
+      obtenerConsumibles(); 
 
     } catch (error) {
       console.error("Error al guardar:", error);
     }
   };
 
-  // Eliminar Consumible (DELETE)
+  // Eliminar Consumible delete
   const eliminarItem = async (id) => {
     if (window.confirm("¿Seguro que deseas descartar este objeto?")) {
       try {
@@ -96,9 +91,9 @@ const InventarioConsumibles = () => {
     }
   };
 
-  // ============
-  // Interfaz visual (UI)
-  // ============
+  
+  // ul visual bonito
+  //<<<>>>>
   return (
   
      <div 

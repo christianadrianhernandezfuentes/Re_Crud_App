@@ -1,4 +1,3 @@
-//Modal sirve para una ventana emergente que aparece por encima de la página principal
 
 import React from 'react';
 
